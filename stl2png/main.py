@@ -18,20 +18,22 @@ import vtkplotlib
 import argparse
 
 parser = argparse.ArgumentParser(description="Convert an stl to a png.")
-parser.add_argument("--stl", dest="stl", help="the stl file to convert")
-parser.add_argument("--png", dest="png", help="the png file to create")
-parser.add_argument(
-    "--orientation",
-    dest="orientation",
-    help="the angle to orient before taking a photo",
-)
+parser.add_argument("--stl", dest="stl", help="the stl file to convert", required=True)
+parser.add_argument("--png", dest="png", help="the png file to create", required=True)
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    if not args.stl or not args.png:
-        parser.print_help()
 
     mesh = Mesh.from_file(args.stl)
-    vtkplotlib.mesh_plot(mesh)
+    # plot the image
+    vtkplotlib.mesh_plot(mesh, opacity=0.5)
+
+    # adjust the position
+    # this is hard. so I commented it out because lazy
+    # vtkplotlib.view(camera_position=[args.x, args.y, args.z])
+
+    # write the image out
     vtkplotlib.save_fig(args.png)
-    print(f"Saved {args.stl} as {args.png}")
+
+    # pad ego
+    print(f"Saved {args.stl} as {args.png} successfully!")

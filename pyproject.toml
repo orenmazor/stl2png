@@ -2,7 +2,7 @@
 name = "stl2png"
 version = "0.1.0"
 description = ""
-authors = ["Oren Mazor <oren.mazor@agilebits.com>"]
+authors = ["Oren Mazor <oren.mazor@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
